@@ -5,12 +5,12 @@ public class quick_sort {
     static int f(int[] arr,int low,int high){
         int pivot = arr[low];
         int i = low;
-        int j  = high;
-        while (i<j){
-            while(arr[i]<arr[pivot] && i <= high){
+        int j = high;
+        while(i<j){
+            while( i <= high && arr[i]<pivot ){
                 i++;
             }
-            while(arr[j] > arr[pivot] && j >=low){
+            while(j >= low && arr[j]>pivot ){
                 j--;
             }
             if(i<j){
@@ -19,29 +19,25 @@ public class quick_sort {
                 arr[j] = temp;
             }
         }
-        return i;
+        return j;
     }
 
-
-    static void qs(int[] arr, int low, int high){
+    static void qs(int[] arr,int low,int high){
         if(low<high){
-            int partin = f(arr, low,high);
-            qs(arr, low, partin-1);
-            qs(arr, partin+1, high);
+            int partin = f(arr,low,high);
+            qs(arr,low,partin);
+            qs(arr,partin+1, high);
         }
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int[] arr = {13,46,24,52,20,9};
 
-        int[] arr = new int[n];
-
-        for(int i = 0; i< n; i++){
-            arr[i] = sc.nextInt();
+        qs(arr,0,arr.length-1);
+        for(int k =0; k<arr.length;k++){
+            System.out.print(arr[k] + " ");
         }
-        qs(arr,arr[0],arr[n-1]);
-
     }
+
 }
