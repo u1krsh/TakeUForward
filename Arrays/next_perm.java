@@ -1,3 +1,5 @@
+package Arrays;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -5,7 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class practice {
+public class next_perm {
     static void reverse(int[] arr, int fromIndex, int toIndex) {
         if (arr == null || fromIndex >= toIndex || fromIndex < 0 || toIndex >= arr.length) {
             return;
