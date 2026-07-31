@@ -1,8 +1,10 @@
+package Arrays;
+
 
 import java.util.*;
 
 
-public class practice {
+public class sub_k_tot {
     static int sub_k(int[] arr, int k){
         HashMap<Integer,Integer> mpp = new HashMap<>();
         mpp.put(0,1);
