@@ -3,29 +3,56 @@ import java.util.*;
 
 
 public class practice {
-    static int sub_k(int[] arr, int k){
-        HashMap<Integer,Integer> mpp = new HashMap<>();
-        mpp.put(0,1);
-        int preSum = 0, cnt = 0;
-        for(int i =0;i<arr.length;i++){
-            preSum += arr[i];
-            int rem = preSum-k;
-            cnt += mpp.getOrDefault(rem,0);
-            mpp.merge(preSum,1,Integer::sum);
+    static void set_zer_met(int[][] arr) {
+        int n = arr.length;
+        int m = arr[0].length;
+        int col0 = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (arr[i][j] == 0) {
+                    arr[i][0] = 0;
+                    if (j != 0) {
+                        arr[0][j] = 0;
+                    } else {
+                        col0 = 0;
+                    }
+                }
+            }
         }
-        return cnt;
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                if (arr[i][j] != 0) {
+                    if (arr[i][0] == 0 || arr[0][j] == 0) {
+                        arr[i][j] = 0;
+                    }
+                }
+            }
+        }
+        if (arr[0][0] == 0) {
+            for (int j = 0; j < m; j++) {
+                arr[0][j] = 0;
+            }
+        }
+        if (col0 == 0) {
+            for(int i =0;i<n;i++){
+                arr[i][0] = 0;
+        }
     }
 
+    }
     public static void main(String[] args) {
 
-        int[] arr = {1,2,3,-3,1,1,1,4,2,-3};
-        System.out.println(sub_k(arr,3));
-////        for(int k =0; k<arr.length;k++) {
-////            for (int l = 0; l < arr[0].length; l++) {
-////                System.out.print(arr[k][l] + " ");
-////            }
-//            System.out.println();
-//        }
+        int[][] arr = {{1,1,1,1},
+                {1,0,1,1},
+                {1,1,0,1},
+                {0,1,1,1}};
+        set_zer_met(arr);
+        for(int k =0; k<arr.length;k++) {
+            for (int l = 0; l < arr[0].length; l++) {
+                System.out.print(arr[k][l] + " ");
+            }
+            System.out.println();
+        }
     }
 
 }
