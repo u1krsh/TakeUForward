@@ -3,49 +3,32 @@ import java.util.*;
 
 
 public class practice {
-    static int gdc(int a, int b){
-        int res = 1;
-        int pa=2,pb =2;
-        while(a>1&&b>1){
-            while(pa*pa<=a && a%pa !=0) pa++;
-                int fac;
-                if(pa*pa>a){
-                    fac =a;
-                }
-                else{
-                    fac = pa;
-                }
+    static int redArr (List<Integer> sus){
+        int n = sus.size();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-
-
-            while(pb*pb<=b && b%pb != 0 ) pb++;
-            int fb;
-            if(pb*pb >b){
-                fb = b;
-            }
-            else{
-                fb = pb;
-            }
-
-            if (fac==fb){
-                res *= fac;
-                a = a/fac;
-                b= b/fb;
-            }
-            else if(fac<fb){
-                a =a /fac;
-            }
-            else{
-                b = b/fb;
-            }
+        for(int x:sus){
+            pq.add(x);
         }
-        return res;
+        while(pq.size() > 1){
+            int min1 = pq.peek(); pq.remove();
+            int min2 = pq.peek(); pq.remove();
+            pq.add(Math.abs(min1-min2));
+        }
+        return pq.peek();
     }
 
 
 
     public static void main(String[] args) {
-        System.out.println(gdc(6,12));;
+        List<Integer> sus = new ArrayList<>();
+        sus.add(5);
+        sus.add(4);
+        sus.add(9);
+        sus.add(2);
+        sus.add(1);
+        sus.add(3);
+        System.out.println(redArr(sus));
     }
 
 }
